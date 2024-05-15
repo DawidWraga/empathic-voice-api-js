@@ -15,7 +15,7 @@ import type { SocketConfig } from '@/lib/create-socket-config';
 export const createSocketUrl = (config: SocketConfig): string => {
   const url = new URL(`wss://${config.hostname}`);
 
-  url.pathname = '/v0/evi/chat';
+  url.pathname = '/v0/assistant/chat';
 
   if (config.auth.type === 'accessToken') {
     url.searchParams.set('accessToken', config.auth.value);

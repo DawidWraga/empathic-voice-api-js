@@ -235,6 +235,20 @@ export class VoiceClient {
     this.socket.send(json);
   }
 
+  sendAudioOutputStartMessage(id: string) {
+    if (!this.socket) {
+      throw new Error('Socket is not connected.');
+    }
+
+    if (this.socket.readyState !== WebSocket.OPEN) {
+      throw new Error('Socket is not open.');
+    }
+
+    const json = JSON.stringify({ id, type: 'audio_output_start' });
+
+    this.socket.send(json);
+  }
+
   /**
    * @name readyState
    * @description

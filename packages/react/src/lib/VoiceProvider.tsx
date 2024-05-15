@@ -157,7 +157,13 @@ export const VoiceProvider: FC<VoiceProviderProps> = ({
   const toolStatus = useToolStatus();
 
   const messageStore = useMessages({
-    sendMessageToParent: props.onMessage,
+    sendMessageToParent: (message) => {
+      props.onMessage?.(message);
+
+      if (message.type === 'assistant_message') {
+        client.sendAudioOutputStartMessage(message.id);
+      }
+    },
     messageHistoryLimit,
   });
 

@@ -206,6 +206,10 @@ export const useVoiceClient = (props: {
     [],
   );
 
+  const sendAudioOutputStartMessage = useCallback((id: string) => {
+    client.current?.sendAudioOutputStartMessage(id);
+  }, []);
+
   return {
     readyState,
     sendSessionSettings,
@@ -215,5 +219,6 @@ export const useVoiceClient = (props: {
     sendUserInput,
     sendAssistantInput,
     sendToolMessage,
+    sendAudioOutputStartMessage,
   };
 };
